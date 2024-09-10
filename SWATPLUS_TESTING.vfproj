@@ -106,7 +106,6 @@
 			<File RelativePath="src\calhard_control.f90"/>
 			<File RelativePath="src\calibration_data_module.f90"/>
 			<File RelativePath="src\calsoft_ave_output.f90"/>
-			<File RelativePath="src\calsoft_chsed.f90"/>
 			<File RelativePath="src\calsoft_control.f90"/>
 			<File RelativePath="src\calsoft_hyd.f90"/>
 			<File RelativePath="src\calsoft_hyd_bfr.f90"/>
