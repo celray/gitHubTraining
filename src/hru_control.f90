@@ -517,6 +517,12 @@
 
         !! compute nitrate movement leaching
         call nut_nlch
+
+        if(wet(j)%flo>0.001) then
+          saltcon = wet(j)%salt/wet(j)%flo*1000 !mg/l
+        else
+          saltcon = 0
+        endif
         
         if (ires > 0) then
           if (wet(j)%flo>0) then
@@ -526,9 +532,11 @@
           end if
           
           if (wet_dat_c(ires)%hyd.eq.'paddy') then !.and.time%yrs > pco%nyskip) then
+            if (wet_ob(j)%depth > 100.) then
            write(100100,'(4(I6,","),20(f20.1,","))') time%yrc,time%mo,time%day_mo,j,w%precip,irrig(j)%applied,hru(j)%water_seep,     &
             pet_day,etday,wet_ob(j)%weir_hgt*1000,wet_ob(j)%depth*1000.,ht2%flo/(hru(j)%area_ha*10.),soil(j)%sw,sedppm,ht2%sed*1000, &
             wet(j)%no3,ht2%no3,pcom(j)%lai_sum,saltcon 
+            end if
           end if
         end if
 

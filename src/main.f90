@@ -13,7 +13,7 @@
       integer :: iob
       integer, allocatable, dimension(:) :: cmd_next
     
-      prog = " SWAT+ Sep 4 2024        MODULAR Rev 2024.61.0.1"
+      prog = " SWAT+ Aug 29 2024        MODULAR Rev 2024.61.0.1"
 
       write (*,1000)
       open (9003,file='simulation.out')

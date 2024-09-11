@@ -261,9 +261,8 @@
         factk = 0.
         factm = -bc4_m + ch_nut(jnut)%ai2 * alg_m
         !ht3%solp = wq_semianalyt (tday, rt_delt, factm, 0., ht5%solp, dispin)
-        ch_nut(jnut)%rhoq = 1.
         xx = Theta (ch_nut(jnut)%bc4, thbc4,wtmp) * ht3%solp
-        yy = Theta(ch_nut(jnut)%rhoq, thrho, wtmp) / (sd_chd(jrch)%chd)
+        yy = Theta(ch_nut(jnut)%rs2, thrs2, wtmp) / (sd_chd(jrch)%chd)
         zz = ch_nut(jnut)%ai2 * Theta(gra,thgra,wtmp) * algin
         ht3%solp = ht3%solp + (xx + yy - zz) * tday
         

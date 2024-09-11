@@ -46,6 +46,8 @@
         real :: lag = 0.               !! tons          |detached large ag
         real :: grv = 0.               !! tons          |gravel
         real :: temp = 0.              !! deg c         |temperature
+        real :: salt = 0.              !! kg            |total salts Jaehak 2024
+        real :: pest = 0.              !! mg            |soluble pesticide  Jaehak 2024
       end type hyd_output
       
       !rtb gwflow - hydrograph separation
@@ -513,6 +515,9 @@
         character (len=15) :: lag  =    "            lag"        !! tons         |detached large ag
         character (len=15) :: grv  =    "            grv"        !! tons         |gravel
         character (len=15) :: temp =    "           null"        !! deg c        |temperature
+        !Jaehak 2024
+        character (len=15) :: salt =    "           salt"        !! kg           |salt out
+        character (len=15) :: pest =    "           pest"        !! mg           |pesticide out
       end type hyd_header
       type (hyd_header) :: hyd_hdr
       
@@ -535,6 +540,9 @@
         character (len=15) :: lag_stor  =    "       lag_stor"        !! tons         |detached large ag stored at end of time period
         character (len=15) :: grv_stor  =    "       grv_stor"        !! tons         |gravel stored at end of time period
         character (len=15) :: temp_stor =    "           null"        !! deg c        |water temperature
+        !Jaehak 2024
+        character (len=15) :: salt_stor =    "      salt_stor"        !! kg           |salt out
+        character (len=15) :: pest_stor =    "      pest_stor"        !! mg           |pesticide out
       end type hyd_stor_header
       type (hyd_stor_header) :: hyd_stor_hdr
       
@@ -557,6 +565,9 @@
         character (len=15) :: lag_in  =    "         lag_in"        !! tons         |detached large ag in
         character (len=15) :: grv_in  =    "         grv_in"        !! tons         |gravel in
         character (len=15) :: temp_in =    "           null"        !! deg c        |temperature in
+        !Jaehak 2024
+        character (len=15) :: salt_in =    "        salt_in"        !! kg           |salt out
+        character (len=15) :: pest_in =    "        pest_in"        !! mg           |pesticide out
       end type hyd_in_header
       type (hyd_in_header) :: hyd_in_hdr
       
@@ -579,6 +590,9 @@
         character (len=15) :: lag_out  =    "        lag_out"        !! tons         |detached large ag out
         character (len=15) :: grv_out  =    "        grv_out"        !! tons         |gravel out
         character (len=15) :: temp_out =    "           null"        !! deg c        |temperature out
+        !Jaehak 2024
+        character (len=15) :: salt_out =    "       salt_out"        !! kg           |salt out
+        character (len=15) :: pest_out =    "       pest_out"        !! mg           |pesticide out
       end type hyd_out_header
       type (hyd_out_header) :: hyd_out_hdr
       
@@ -788,8 +802,8 @@
         character (len=15) :: grv    =  "           tons"        !! tons         |gravel
         character (len=15) :: temp   =  "               "        !! deg c        |temperature
         !Jaehak 2023
-        !character (len=15) :: salt   =  "             kg"        !! deg c        |temperature
-        !character (len=15) :: pest   =  "             mg"        !! deg c        |temperature
+        character (len=15) :: salt   =  "             kg"        !! deg c        |temperature
+        character (len=15) :: pest   =  "             mg"        !! deg c        |temperature
       end type hyd_header_units1
       type (hyd_header_units1) :: hyd_hdr_units1 
          
@@ -813,8 +827,8 @@
         character (len=15) :: grv    =  "           tons"        !! tons         |gravel
         character (len=15) :: temp   =  "               "        !! deg c        |temperature
         !Jaehak 2023
-        !character (len=15) :: salt   =  "             kg"        !! deg c        |temperature
-        !character (len=15) :: pest   =  "             mg"        !! deg c        |temperature
+        character (len=15) :: salt   =  "             kg"        !! deg c        |temperature
+        character (len=15) :: pest   =  "             mg"        !! deg c        |temperature
       end type hyd_header_units3
       type (hyd_header_units3) :: hyd_hdr_units3 
 

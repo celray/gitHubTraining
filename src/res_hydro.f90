@@ -166,8 +166,6 @@
               ht2%flo = max(0.,ht2%flo)
                  
             case ("weir")
-              !! release based on weir equation
-              iweir = d_tbl%act_typ(iac)
               res_h = vol / wsa1     !m
               hgt_above = max(0., res_h - wet_ob(jres)%weir_hgt)    !m
               if (nstep>24) then !hourly interval

@@ -71,6 +71,7 @@
       !! add irrigation water to the paddy/wetland storage 
       wet(j)%flo =  wet(j)%flo + irrig(j)%applied * wsa1 !m3
       wet(j)%no3 = wet(j)%no3 + irrig(j)%no3 * irrig(j)%applied * wsa1 * 0.001 !kg
+      wet(j)%salt = wet(j)%salt + irrig(j)%salt * irrig(j)%applied * wsa1 * 0.001 !kg
       wet_wat_d(j)%area_ha = 0.
       if (wet(j)%flo > 0.) then  !paddy is assumed flat
         !! update wetland surface area - solve quadratic to find new depth
@@ -140,7 +141,7 @@
         soil1(j)%mp(1)%act = soil1(j)%mp(1)%act + wet(j)%solp * seep_rto / hru(j)%area_ha !kg/ha
         soil1(j)%water(1)%n = soil1(j)%water(1)%n + wet(j)%orgn * seep_rto / hru(j)%area_ha !kg/ha
         soil1(j)%water(1)%p = soil1(j)%water(1)%p + wet(j)%sedp * seep_rto / hru(j)%area_ha !kg/ha
-        !soil1(j)%salt = soil1(j)%salt + wet(j)%salt * seep_rto / hru(j)%area_ha !kg/ha
+        soil1(j)%salt = soil1(j)%salt + wet(j)%salt * seep_rto / hru(j)%area_ha !kg/ha
         
         ! nutrient seepage amount 
         wet_seep_day(j)%no3 = wet(j)%no3 * seep_rto !kg
@@ -148,6 +149,7 @@
         wet_seep_day(j)%orgn = wet(j)%orgn * seep_rto
         wet_seep_day(j)%solp = wet(j)%solp * seep_rto
         wet_seep_day(j)%sedp = wet(j)%sedp * seep_rto
+        wet_seep_day(j)%salt = wet(j)%salt * seep_rto
         
         ! substract the seepage amount from the ponding water
         wet(j)%no3 = wet(j)%no3 - wet_seep_day(j)%no3 
@@ -155,6 +157,7 @@
         wet(j)%orgn = wet(j)%orgn - wet_seep_day(j)%orgn
         wet(j)%solp = wet(j)%solp - wet_seep_day(j)%solp
         wet(j)%sedp = wet(j)%sedp - wet_seep_day(j)%sedp
+        wet(j)%salt = wet(j)%salt - wet_seep_day(j)%salt
       end if 
         
       !! if not a floodplain wetland
@@ -208,7 +211,8 @@
       call res_nutrient (j)
       
       wet(j)%no3 = wbody%no3  
-      wet(j)%nh3 = wbody%nh3  
+      wet(j)%nh3 = wbody%nh3
+      wet(j)%salt = wbody%salt  
       wet(j)%orgn =wbody%orgn
       wet(j)%sedp = wbody%sedp 
       wet(j)%solp = wbody%solp 
@@ -221,7 +225,7 @@
       call wet_cs(icmd,icon,j)
 
       ! calculate sediment/nutrient yield when wetlands are flushed 
-      if (dep_init<0.0001 .and. ht2%flo>0.) then 
+      if (dep_init < 0.0001 .and. ht2%flo > 0.) then 
         call ero_cfactor 
         qp_cms = bsn_prm%prf / 6578.6 * hru(j)%area_ha * surfq(j) / tconc(j) / 35.3
         cklsp(j) = usle_cfac(j) * hru(j)%lumv%usle_mult

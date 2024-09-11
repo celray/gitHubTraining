@@ -87,6 +87,7 @@
       ht2%chla = wbody%chla * ht2%flo / (wbody%flo + ht2%flo)
       ht2%nh3 = wbody%nh3 * ht2%flo / (wbody%flo + ht2%flo)
       ht2%no2 = wbody%no2 * ht2%flo / (wbody%flo + ht2%flo)
+      ht2%salt = wbody%salt * ht2%flo / (wbody%flo + ht2%flo) !Jaehak 2023
      
       !! remove nutrients leaving reservoir
       wbody%no3 = max(0.,wbody%no3 - ht2%no3) !No less than zero, Jaehak 2024

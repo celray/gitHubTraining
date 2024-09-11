@@ -43,11 +43,11 @@
           wet_ob(iihru)%psa = wet_hyd(ihyd)%psa * hru(iihru)%area_ha 
           wet_ob(iihru)%esa = wet_hyd(ihyd)%esa * hru(iihru)%area_ha 
           !! set initial weir height to principal depth - m
-          if (db_mx%res_weir > 0.and.wet_ob(iihru)%iweir>0) then !if available, read from weir.res Jaehak 2022
+          if (db_mx%res_weir > 0 .and. wet_ob(iihru)%iweir > 0) then !if available, read from weir.res Jaehak 2022
             wet_ob(iihru)%weir_hgt = res_weir(iweir)%h  !m weir height
             wet_ob(iihru)%weir_wid = res_weir(iweir)%w  !m, weir width
             !update pvol/evol according to weir height for paddy weir discharge. Jaehak 2023
-            wet_ob(iihru)%pvol = hru(iihru)%area_ha * wet_ob(iihru)%weir_hgt * 10.**4  ! m3
+            wet_ob(iihru)%pvol = hru(iihru)%area_ha * res_weir(iweir)%h * 10.**4  ! m3
             if (wet_ob(iihru)%evol < wet_ob(iihru)%pvol*1.2) then
               wet_ob(iihru)%evol = wet_ob(iihru)%pvol * 1.2   
             endif
